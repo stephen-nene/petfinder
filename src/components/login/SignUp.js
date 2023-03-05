@@ -16,6 +16,10 @@ export default function SignUp() {
     }));
   };
 
+  const signUp = () => {
+    
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault();
     fetch("http://0.0.0.0:9292/users/create", {
@@ -73,7 +77,7 @@ export default function SignUp() {
             required
           />
         </div>
-        <input type="submit"onClick={handleSubmit} value="Sign Up" />
+        <input type="submit"onClick={signUp} value="Sign Up" />
       </form>
     </div>
   );
