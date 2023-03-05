@@ -14,7 +14,6 @@ export default function Login() {
               <a href="/" className="logo">
                 Pets <span>.</span>
               </a>
-
               <div className="heading">
                 <h2>Pet Finder</h2>
                 <p>You are at the right place</p>
@@ -57,7 +56,7 @@ export default function Login() {
 
                   <div className="CTA">
                     <input type="submit" value="Login" id="login" />
-                    <a href="#" className="switch">
+                    <a href="#new" className="switch">
                       I'm New
                     </a>
                   </div>
@@ -113,7 +112,7 @@ export default function Login() {
 
                   <div className="CTA">
                     <input type="submit" value="Signup" id="signup" />
-                    <a href="#" className="switch">
+                    <a href="#signup" className="switch">
                       I have an account
                     </a>
                   </div>
