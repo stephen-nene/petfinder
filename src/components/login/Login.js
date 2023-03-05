@@ -1,126 +1,75 @@
-import React from "react";
+import React, { useState } from "react";
 import NavBar from "../nav/navbar";
-import "./login.css";
 
 export default function Login() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const handleUsernameChange = (event) => {
+    setUsername(event.target.value);
+  };
+
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+  };
+
+  const handleLoginSubmit = (event) => {
+    event.preventDefault();
+
+    fetch("/users/authenticate", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username: username,
+        password: password,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        // Handle successful login
+        console.log(data);
+      })
+      .catch((error) => {
+        setErrorMessage("Invalid username or password");
+      });
+  };
+
   return (
-    <div className="navdiv">
+    <div className="loginstuff">
       <NavBar />
-      <div className="container">
-        <section id="formHolder">
-          <div className="row">
-            {/* brandbox*/}
-            <div className="col-sm-6 brand">
-              <a href="/" className="logo">
-                Pets <span>.</span>
-              </a>
-              <div className="heading">
-                <h2>Pet Finder</h2>
-                <p>You are at the right place</p>
-              </div>
-
-              <div className="success-msg">
-                <p>Great! You are one of our members now</p>
-                <a href="/mypets" className="profile">
-                  Your Profile
-                </a>
-              </div>
-            </div>
-
-            {/* form box */}
-            <div className="col-sm-6 form">
-              {/* login form */}
-              <div className="login form-peice switched">
-                <form className="login-form" action="#" method="post">
-                  <div className="form-group">
-                    <label htmlFor="loginemail">Email Address</label>
-                    <input
-                      type="email"
-                      name="loginemail"
-                      id="loginemail"
-                      className="loginemail"
-                      required
-                    />
-                  </div>
-
-                  <div className="form-group">
-                    <label htmlFor="loginPassword">Password</label>
-                    <input
-                      type="password"
-                      name="loginPassword"
-                      id="loginPassword"
-                      className="loginPassword"
-                      required
-                    />
-                  </div>
-
-                  <div className="CTA">
-                    <input type="submit" value="Login" id="login" />
-                    <a href="#new" className="switch">
-                      I'm New
-                    </a>
-                  </div>
-                </form>
-              </div>
-
-              {/* signup form */}
-              <div className="signup form-peice">
-                <form className="signup-form" action="#" method="post">
-                  <div className="form-group">
-                    <label htmlFor="username">Full Name</label>
-                    <input
-                      type="text"
-                      name="username"
-                      id="username"
-                      className="name"
-                      required
-                    />
-                  </div>
-
-                  <div className="form-group">
-                    <label htmlFor="email">Email Adderss</label>
-                    <input
-                      type="email"
-                      name="email"
-                      id="email"
-                      className="email"
-                      required
-                    />
-                  </div>
-
-                  <div className="form-group">
-                    <label htmlFor="password">Password</label>
-                    <input
-                      type="password"
-                      name="password"
-                      id="password"
-                      className="pass"
-                      required
-                    />
-                  </div>
-
-                  <div className="form-group">
-                    <label htmlFor="passwordConfirm">Confirm Password</label>
-                    <input
-                      type="password"
-                      name="passwordConfirm"
-                      id="passwordConfirm"
-                      className="passConfirm"
-                      required
-                    />
-                  </div>
-
-                  <div className="CTA">
-                    <input type="submit" value="Signup" id="signup" />
-                    <a href="#signup" className="switch">
-                      I have an account
-                    </a>
-                  </div>
-                </form>
-              </div>
-            </div>
+      <div className="form-container">
+        <form className="form-peice" onSubmit={handleLoginSubmit}>
+          <h1>Login</h1>
+          {errorMessage && <div className="error">{errorMessage}</div>}
+          <div className="form-group">
+            <label htmlFor="username">Username:</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              value={username}
+              onChange={handleUsernameChange}
+              required
+            />
           </div>
-        </section>
+          <div className="form-group">
+            <label htmlFor="password">Password:</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={password}
+              onChange={handlePasswordChange}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <button type="submit">Login</button>
+          </div>
+        </form>
       </div>
     </div>
   );
