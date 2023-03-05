@@ -1,0 +1,37 @@
+*, *:after,*:befoe{
+    box-sizing: border-box;
+}
+
+.navbar{
+    font-family: sans-serif;
+    line-height: 1.5;
+    min-height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+a{
+    color: cadetblue;
+    text-decoration: none;
+    transition: 0.25s ease;
+}
+ul{
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+}
+ul li{
+    margin-left: 0.75rem;
+    margin-right: 0.75rem;
+}
+ul:hover a{
+    color: #CCC;
+}
+ul:hover a:hover{
+    color: #000;
+    box-shadow: 0 2px 0 0 currentColor;
+}
+
+
+

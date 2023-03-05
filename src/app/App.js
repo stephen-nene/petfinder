@@ -1,18 +1,19 @@
 import React from "react";
-import { BrowserRouter as Router, Route,  } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes,  } from 'react-router-dom';
 
 import Home from "../components/home/Home"
 import Login from "../components/login/Login";
+import MyPets from "../components/myPets/MyPets";
 
 function App() {
 
   return (
     <Router>
-      <div>
-      <Route path="/home" component={Home} /> {/* // change the route of home page to "/home". */}
-            <Route path="/login" component={Login} />
-            {/* <Route path="/contact" component={Contact} /> */}
-      </div>
+      <Routes>
+        <Route path="/home" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/mypets" element={<MyPets/>} />
+      </Routes>
     </Router>
   );
 }
