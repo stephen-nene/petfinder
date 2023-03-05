@@ -7,7 +7,7 @@ export default function NavBar (){
             <div className="navbar">
             <nav>
                 <ul>
-                <li><a href="/home">home</a></li>
+                <li><a href="/">home</a></li>
                 <li><a href="/mypets">mypets</a></li>
                 {/* <li><a href=""></a></li> */}
                 <li><a href="/login">login</a></li>
