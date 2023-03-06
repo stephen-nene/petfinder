@@ -7,13 +7,15 @@ import MyPets from "../components/myPets/MyPets";
 // import { useEffect, useState } from 'react';
 
 function App() {
+
+
   return (
     <Router>
       {/* <main id="main"> */}
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/mypets" element={<MyPets />} />
+          <Route path="/login" element={<Login  />} />
+          <Route path="/mypets" element={<MyPets/>} />
           <Route path="/signup" element={<SignUp />} />
         </Routes>
       {/* </main> */}

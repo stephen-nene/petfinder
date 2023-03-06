@@ -36,17 +36,25 @@ export default function Login() {
         console.log(data);
         if (data.message) {
           setErrorMessage("Invalid username or password");
-        } else{
+        } else {
           setSuccess("Successfully logged in");
           // Redirect the user to the mypets page
-          window.location.replace("/mypets");
+          // window.location.replace("/mypets");
+
+          // Access the session id value from the cookie
+          const sessionId = document.cookie
+            .split(";")
+            .find((cookie) => cookie.startsWith("_session_id"))
+            .split("=")[1];
+
+          // Use the session id value in your application
+          console.log(`Session id: ${sessionId}`);
         }
       })
       .catch((error) => {
         setErrorMessage("Error logging in");
       });
   };
-
 
   return (
     <div className="main">
