@@ -3,11 +3,12 @@ import NavBar from "../nav/navbar";
 import "./login.css";
 
 
-export default function Login() {
+export default function Login({setLogUserId, logUserId}) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [success, setSuccess] = useState("");
+
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
@@ -33,22 +34,14 @@ export default function Login() {
       .then((response) => response.json())
       .then((data) => {
         // Handle successful login
-        console.log(data);
         if (data.message) {
           setErrorMessage("Invalid username or password");
         } else {
           setSuccess("Successfully logged in");
           // Redirect the user to the mypets page
+          setLogUserId(data.session.user_id)
+          console.log(data, logUserId );
           // window.location.replace("/mypets");
-
-          // Access the session id value from the cookie
-          const sessionId = document.cookie
-            .split(";")
-            .find((cookie) => cookie.startsWith("_session_id"))
-            .split("=")[1];
-
-          // Use the session id value in your application
-          console.log(`Session id: ${sessionId}`);
         }
       })
       .catch((error) => {

@@ -1,16 +1,15 @@
 import React ,{ useState, useEffect }from "react";
 import NavBar from '../nav/navbar';
 
-export default function MyPets() {
+export default function MyPets({ logUserId}) {
 const [pets, setPets ] = useState([]);
 const [error, setError] = useState(null);
 
-const sessionId = localStorage.getItem("session_id");
 
 useEffect(() => {
   async function fetchData() {
     try {
-      const response = await fetch(`https://petfinder-backend.stephennene.repl.co/mypet?owner_id= ${sessionId}`);
+      const response = await fetch(`https://petfinder-backend.stephennene.repl.co/mypet?owner_id=${logUserId}`);
       const data = await response.json();
       setPets(data.pets);
     } catch (error) {
@@ -19,7 +18,7 @@ useEffect(() => {
   }
 
   fetchData();
-}, [sessionId]);
+}, [logUserId]);
 
 if (error) {
   return (
