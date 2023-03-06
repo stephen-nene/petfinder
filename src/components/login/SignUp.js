@@ -41,7 +41,7 @@ export default function SignUp() {
       })
       .catch((error) => {
         console.error(error);
-        
+
       });
   };
 
@@ -50,8 +50,10 @@ export default function SignUp() {
   };
 
   return (
-    <div className="signupstuff">
+    <div className="main">
+
       <NavBar />
+    <div className="signupstuff">
       <h1>Sign Up</h1>
       <form onSubmit={handleSubmit}>
         <div>
@@ -87,20 +89,10 @@ export default function SignUp() {
             required
           />
         </div>
-        {/* <div>
-          <label htmlFor="password">confirm-Password:</label>
-          <input
-            type="password"
-            name="password"
-            id="password"
-            value={formData.password}
-            onChange={handleInputChange}
-            required
-          />
-        </div> */}
 
         <input type="submit"onClick={signUp} value="Sign Up" />
       </form>
+    </div>
     </div>
   );
 }

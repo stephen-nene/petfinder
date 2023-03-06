@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import { sessionStorage } from 'window';
 import NavBar from "../nav/navbar";
 import "./login.css";
 const { sessionStorage } = window;
@@ -45,8 +44,10 @@ export default function Login() {
   };
 
   return (
-    <div className="loginstuff">
+    <div className="main">
+
       <NavBar />
+    <div className="loginstuff">
       <div className="form-container">
         <form className="form-peice" onSubmit={handleLoginSubmit}>
           <h1>Login</h1>
@@ -78,6 +79,7 @@ export default function Login() {
           </div>
         </form>
       </div>
+    </div>
     </div>
   );
 }

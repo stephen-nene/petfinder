@@ -8,11 +8,12 @@ function Home() {
   useEffect(() => {
     const fetchPets = async () => {
       try {
-        const response = await fetch('https://petfinder-backend.stephennene.repl.co/pets');
+        const response = await fetch('http://0.0.0.0:9292/pets');
         if (!response.ok) {
           throw new Error('Failed to fetch pets');
         }
         const data = await response.json();
+        console.log(data)
         setPets(data);
         setError(null);
       } catch (error) {
@@ -33,11 +34,11 @@ function Home() {
     <div>
       <NavBar />
       <div className="container mt-4">
+          {/* <img src=} className="card-img-top" alt={`Picture of ${pet.name}`} /> */}
         <div className="row row-cols-1 row-cols-md-3 g-4">
           {pets.length > 0 && pets.map(pet => (
             <div key={pet.pet.id} className="col">
               <div className="card h-100">
-                {/* <img src=} className="card-img-top" alt={`Picture of ${pet.name}`} /> */}
                 <div className="card-body">
                   <h5 className="card-title">{pet.pet.name}</h5>
                   <p className="card-text">{pet.pet.breed}</p>
