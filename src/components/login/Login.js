@@ -7,7 +7,7 @@ export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  // const [loggedIn, setLoggedIn] = useState(false);
+  const [success, setSuccess] = useState("");
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
@@ -34,53 +34,61 @@ export default function Login() {
       .then((data) => {
         // Handle successful login
         console.log(data);
-        document.querySelector(".error").classList.add("success");
-        setErrorMessage("Successfully logged in")
-        // window.location.replace("/mypets");
-
+        if (data.message) {
+          setErrorMessage("Invalid username or password");
+        } else{
+          setSuccess("Successfully logged in");
+          // Redirect the user to the mypets page
+          window.location.replace("/mypets");
+        }
       })
       .catch((error) => {
-        setErrorMessage("Invalid username or password");
+        setErrorMessage("Error logging in");
       });
   };
 
+
   return (
     <div className="main">
-
       <NavBar />
-    <div className="loginstuff">
-      <div className="form-container">
-        <form className="form-peice" onSubmit={handleLoginSubmit}>
-          <h1>Login</h1>
-          {errorMessage && <div className="error">{errorMessage}</div>}
-          <div className="form-group">
-            <label htmlFor="username">Username:</label>
-            <input
-              type="text"
-              id="username"
-              name="username"
-              value={username}
-              onChange={handleUsernameChange}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="password">Password:</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={password}
-              onChange={handlePasswordChange}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <button type="submit">Login</button>
-          </div>
-        </form>
+      <div className="loginstuff">
+        <div className="form-container">
+          <form className="form-peice" onSubmit={handleLoginSubmit}>
+            <h1>Login</h1>
+            {errorMessage && (
+              <div className="message error">{errorMessage}</div>
+            )}
+            {success && (
+              <div className="message success">{success}</div>
+            )}
+            <div className="form-group">
+              <label htmlFor="username">Username:</label>
+              <input
+                type="text"
+                id="username"
+                name="username"
+                value={username}
+                onChange={handleUsernameChange}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="password">Password:</label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                value={password}
+                onChange={handlePasswordChange}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <button type="submit">Login</button>
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
     </div>
   );
 }
