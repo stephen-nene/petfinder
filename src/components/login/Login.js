@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import NavBar from "../nav/navbar";
 import "./login.css";
-const { sessionStorage } = window;
+
 
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const [loggedIn, setLoggedIn] = useState(false);
+  // const [loggedIn, setLoggedIn] = useState(false);
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
@@ -33,10 +33,11 @@ export default function Login() {
       .then((response) => response.json())
       .then((data) => {
         // Handle successful login
-        console.log(data, loggedIn);
-        setLoggedIn(true);
-        sessionStorage.setItem('user_id', data.id);
-        window.location.replace("/mypets");
+        console.log(data);
+        document.querySelector(".error").classList.add("success");
+        setErrorMessage("Successfully logged in")
+        // window.location.replace("/mypets");
+
       })
       .catch((error) => {
         setErrorMessage("Invalid username or password");

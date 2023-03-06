@@ -56,6 +56,11 @@
     font-size: 18px;
     margin-bottom: 10px;
   }
+  .success {
+    color: green;
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
 
   .signupstuff {
     margin: 20px;
