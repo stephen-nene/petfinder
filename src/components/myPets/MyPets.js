@@ -9,32 +9,50 @@ export default function MyPets() {
     fetch('https://petfinder-backend.stephennene.repl.co/users')
       .then(response => response.json())
       .then(data => {
-        console.log(data);
         setUsers(data);
       })
       .catch(error => console.log(error));
 
-    // Get the user_id from the session storage
     const user_id = sessionStorage.getItem('user_id');
 
-    // Fetch the details of the logged-in user
     fetch('https://petfinder-backend.stephennene.repl.co/users/' + user_id)
       .then(response => response.json())
       .then(data => {
-        console.log(data);
-        setLoggedInUserId(data.user.username);
-
+        setLoggedInUserId(data.user.id);
       })
       .catch(error => console.log(error));
   }, []);
 
-  console.log(users);
+  const handleLogin = () => {
+    window.location.href = '/login';
+  };
+
+  const handleSignup = () => {
+    window.location.href = '/signup';
+  };
 
   return (
     <div>
       <NavBar />
       <h3>my pets</h3>
-      <p>Logged in as user with id: {loggedInUserId}</p>
+      {loggedInUserId ? (
+        <p>Logged in as {users.find(user => user.id === loggedInUserId).name}</p>
+      ) : (
+        <div>
+          <button onClick={handleLogin}>Login</button>
+          <button onClick={handleSignup}>Signup</button>
+        </div>
+      )}
+        {loggedInUserId && users.length > 0 && (
+        <div>
+            <h4>Your pets:</h4>
+            <ul>
+            {users.find(user => user.id === loggedInUserId).pets.map(pet => (
+                <li key={pet.id}>{pet.name}</li>
+            ))}
+            </ul>
+        </div>
+        )}
     </div>
   );
 }
