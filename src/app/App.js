@@ -12,7 +12,7 @@ import { useEffect, useState } from 'react';
 function App() {
   const [users, setUsers] = useState([]);
   useEffect(() => {
-    fetch('http://0.0.0.0:9292/users/all')
+    fetch('http://0.0.0.0:9292/users')
       .then(response => response.json())
       .then(data => setUsers(data))
       .catch(error => console.log(error));

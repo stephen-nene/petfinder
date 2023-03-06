@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import NavBar from "../nav/navbar";
+import "./login.css"
 
 export default function SignUp() {
   const [formData, setFormData] = useState({
     username: "",
     email: "",
     password: "",
+    confirmPassword: "",
   });
+
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -16,12 +19,10 @@ export default function SignUp() {
     }));
   };
 
-  const signUp = () => {
-    
-  }
-
-  const handleSubmit = (event) => {
+  const signUp = (event) => {
+    // handle sign up logic
     event.preventDefault();
+
     fetch("http://0.0.0.0:9292/users/create", {
       method: "POST",
       headers: {
@@ -32,11 +33,15 @@ export default function SignUp() {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
+        window.location.replace("/login");
         // Do something with the newly created user data
       })
       .catch((error) => {
         console.error(error);
       });
+  };
+
+  const handleSubmit = (event) => {
   };
 
   return (
@@ -77,6 +82,18 @@ export default function SignUp() {
             required
           />
         </div>
+        {/* <div>
+          <label htmlFor="password">confirm-Password:</label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            value={formData.password}
+            onChange={handleInputChange}
+            required
+          />
+        </div> */}
+
         <input type="submit"onClick={signUp} value="Sign Up" />
       </form>
     </div>

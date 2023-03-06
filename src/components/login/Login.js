@@ -1,10 +1,15 @@
 import React, { useState } from "react";
+// import { Redirect } from "react-router-dom";
 import NavBar from "../nav/navbar";
+import "./login.css"
+
+
 
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [loggedIn, setLoggedIn] = useState(false);
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
@@ -17,7 +22,7 @@ export default function Login() {
   const handleLoginSubmit = (event) => {
     event.preventDefault();
 
-    fetch("/users/authenticate", {
+    fetch("http://0.0.0.0:9292/users/authenticate", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -30,7 +35,9 @@ export default function Login() {
       .then((response) => response.json())
       .then((data) => {
         // Handle successful login
-        console.log(data);
+        console.log(data, loggedIn);
+        setLoggedIn(true);
+        window.location.replace("/mypets");
       })
       .catch((error) => {
         setErrorMessage("Invalid username or password");
