@@ -20,10 +20,14 @@ export default function SignUp() {
   };
 
   const signUp = (event) => {
-    // handle sign up logic
     event.preventDefault();
 
-    fetch("http://0.0.0.0:9292/users/create", {
+    if (!formData.username || !formData.email || !formData.password ) {
+      alert("Please fill in all fields.");
+      return;
+    }
+
+    fetch("https://petfinder-backend.stephennene.repl.co/users/create", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -33,13 +37,14 @@ export default function SignUp() {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        window.location.replace("/login");
-        // Do something with the newly created user data
+        window.location.replace("/login"); // redirect to login page
       })
       .catch((error) => {
         console.error(error);
+        
       });
   };
+
 
   const handleSubmit = (event) => {
   };

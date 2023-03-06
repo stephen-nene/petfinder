@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-// import { Redirect } from "react-router-dom";
+// import { sessionStorage } from 'window';
 import NavBar from "../nav/navbar";
-import "./login.css"
-
-
+import "./login.css";
+const { sessionStorage } = window;
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -22,7 +21,7 @@ export default function Login() {
   const handleLoginSubmit = (event) => {
     event.preventDefault();
 
-    fetch("http://0.0.0.0:9292/users/authenticate", {
+    fetch("https://petfinder-backend.stephennene.repl.co/users/authenticate", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -37,6 +36,7 @@ export default function Login() {
         // Handle successful login
         console.log(data, loggedIn);
         setLoggedIn(true);
+        sessionStorage.setItem('user_id', data.id);
         window.location.replace("/mypets");
       })
       .catch((error) => {

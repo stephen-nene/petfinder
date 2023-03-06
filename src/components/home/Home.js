@@ -8,7 +8,7 @@ function Home() {
   useEffect(() => {
     const fetchPets = async () => {
       try {
-        const response = await fetch('http://0.0.0.0:9292/pets');
+        const response = await fetch('https://petfinder-backend.stephennene.repl.co/pets');
         if (!response.ok) {
           throw new Error('Failed to fetch pets');
         }
