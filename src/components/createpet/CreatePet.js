@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import NavBar from "../nav/navbar";
+import "./CreatePet.css"
 
 export default function CreatePet({logUserId}) {
   const [petData, setPetData] = useState({ name: "", age: 0, breed: "", animal_type: "", gender: "", description: "", owner_id: logUserId, url: "" });
@@ -30,7 +31,10 @@ export default function CreatePet({logUserId}) {
 
   return (
     <div>
+
       <NavBar />
+    <div className="container">
+      <div className="form-container">
       <h1>Create a new pet</h1>
       <form onSubmit={handleFormSubmit}>
         <div className="form-group">
@@ -63,6 +67,8 @@ export default function CreatePet({logUserId}) {
         </div>
         <button type="submit" className="btn btn-primary">Create</button>
       </form>
+      </div>
+    </div>
     </div>
   );
 }

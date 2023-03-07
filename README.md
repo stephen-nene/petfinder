@@ -1,26 +1,56 @@
 # PetFinder app React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**live link:** [pefinder-webapp](https://frontpetfinder.netlify.app/)<br/>
+<img src="./src/images/home.png"/>
 
-## Available Scripts
-
-In the project directory, you can run:
-
-## Backend
-
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## login and signup pages
+<img src="./src/images/login.png" width="750" height="500"/>
+<img src="./src/images/signup.png" width="750" height="500"/>
 
 
 
-## Author
-Stephen-Nene: [stephen-nene](https://github.com/stephen-nene)
+
+## Backend Repository
+
+[my-backend-repository](https://github.com/stephen-nene/petfinder-backend)
+
+
+## Project Setup
+
+- clone this repository by copying the code below to your terminal
+
+```bash
+git clone https://github.com/stephen-nene/petfinder-frontend
+```
+- cd into the directory with the cloned files
+
+```bash
+cd petfinder-frontend
+```
+
+- run bundle install to get all the gem dependencies installed
+```
+npm install
+```
+- To run the magazine-domain use rake tasks
+
+```bash
+npm start
+```
+
+
+## Owner
+
+1. [Steve Nene](https://github.com/stephen-nene)
+
+   ### Message from contributor
+- I appreciate your interest in our project, and we hope that you find it helpful and informative. If you have any questions or feedback, please feel free to reach out to us. Thank you for choosing our Product Review project!
+
 
 ## License
-This project is licensed under the MIT License
+
+- **NeneCorp** <span>&copy;</span>
+
+
+
+
