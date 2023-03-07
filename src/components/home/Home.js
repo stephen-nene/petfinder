@@ -42,9 +42,12 @@ function Home({users, logUserId, updatePetValue}) {
       <NavBar />
       <div className="container mt-3">
         {!isFetched && (
+          <div>
+          <p>looged in as {logUserId}</p>
           <button className="btn btn-primary mb-3" onClick={handleButtonClick}>
             Populate Pets
           </button>
+          </div>
         )}
         {error && <div className="alert alert-danger">{error}</div>}
         {isFetched && (
@@ -55,6 +58,7 @@ function Home({users, logUserId, updatePetValue}) {
                   <div className="card-header">
                     <h5 className="card-title mb-0">{pet.name}</h5>
                     <h6 className="card-subtitle text-muted">{pet.type}</h6>
+                    <img src={pet.url} alt={pet.name} />
                   </div>
                   <div className="card-body">
                     <p className="card-text">{pet.description}</p>

@@ -22,6 +22,21 @@ export default function MyPets({ logUserId}) {
       setError(new Error('you have to login to view your pets'));
     }
   }, [logUserId]);
+  async function deletePet(petId) {
+    try {
+      const response = await fetch(
+        `https://petfinder-backend.stephennene.repl.co/pets/${petId}`,
+        {
+          method: "DELETE",
+        }
+      );
+      const data = await response.json();
+      console.log(data.message);
+      setPets((prevPets) => prevPets.filter((pet) => pet.id !== petId));
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   if (error) {
     return (
@@ -53,12 +68,14 @@ export default function MyPets({ logUserId}) {
             <h5 className="card-title mb-0">{pet.name}</h5>
           </div>
           <div className="card-body">
+            <p className="card-text">{pet.description}</p>
             <p className="card-text">Age: {pet.age}</p>
             <p className="card-text">Gender: {pet.gender}</p>
             <p className="card-text">Breed: {pet.breed}</p>
           </div>
           <div className="card-footer">
             {/* <button className="btn btn-danger me-2">Delete</button>            <button className="btn btn-primary">Edit</button> */}
+            <button className="btn btn-danger me-2" onClick={() => deletePet(pet.id)}>Delete</button>
           </div>
         </div>
       ))}

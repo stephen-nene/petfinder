@@ -41,7 +41,7 @@ export default function Login({setLogUserId, logUserId}) {
           // Redirect the user to the mypets page
           setLogUserId(data.session.user_id)
           console.log(data, logUserId );
-          // window.location.replace("/mypets");
+          // window.location.replace("/");
         }
       })
       .catch((error) => {
