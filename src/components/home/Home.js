@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import NavBar from '../nav/navbar';
+import './Home.css';
 
-function Home() {
+function Home({users , logUserId }) {
   const [pets, setPets] = useState([]);
   const [error, setError] = useState(null);
   const [isFetched, setIsFetched] = useState(false);
@@ -22,6 +23,15 @@ function Home() {
     }
   };
 
+  const getPet = () => {
+    console.log(users)
+
+  }
+
+  const getOwner = (pet) => {
+    return users.find((user) => user.id === pet.owner_id);
+  }
+
   const handleButtonClick = () => {
     setIsFetched(true);
     fetchPets();
@@ -33,7 +43,7 @@ function Home() {
       <div className="container mt-3">
         {!isFetched && (
           <button className="btn btn-primary mb-3" onClick={handleButtonClick}>
-            Fetch Pets
+            Populate Pets
           </button>
         )}
         {error && <div className="alert alert-danger">{error}</div>}
@@ -42,11 +52,22 @@ function Home() {
             {pets.map((pet) => (
               <div key={pet.id} className="col">
                 <div className="card h-100">
-                  {/* <img src={pet.photoUrl} className="card-img-top" alt={pet.name} /> */}
+                  <div className="card-header">
+                    <h5 className="card-title mb-0">{pet.name}</h5>
+                    <h6 className="card-subtitle text-muted">{pet.type}</h6>
+                  </div>
                   <div className="card-body">
-                    <h5 className="card-title">name:{pet.name}</h5>
                     <p className="card-text">{pet.description}</p>
-                    <button className="btn btn-primary">Add to My Pets</button>
+                    <ul className="list-unstyled mb-0">
+                      <li>Age: {pet.age}</li>
+                      <li>Gender: {pet.gender}</li>
+                      <li>Breed: {pet.breed}</li>
+                      <li className={`pet-owner ${getOwner(pet) ? 'has-owner' : ''}`}>Owner: {getOwner(pet) ? getOwner(pet).username : 'Unknown'}</li>
+                      {/* <li>Size: {pet.size}</li> */}
+                    </ul>
+                  </div>
+                  <div className="card-footer">
+                    <button onClick={getPet} className="btn btn-primary">Add to My Pets</button>
                   </div>
                 </div>
               </div>

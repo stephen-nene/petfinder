@@ -14,6 +14,7 @@ export default function NavBar (){
                 <li><NavLink to="/mypets">mypets</NavLink></li>
                 <li><NavLink to="/login">login</NavLink></li>
                 <li><NavLink to="/signUp">SignUp</NavLink></li>
+                <li> <NavLink to="/create">Createpet</NavLink> </li>
                 </ul>
             </nav>
             </div>
