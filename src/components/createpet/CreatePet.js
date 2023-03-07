@@ -30,7 +30,7 @@ export default function CreatePet({logUserId}) {
   };
 
   return (
-    <div>
+    <div  className="create-pet">
 
       <NavBar />
     <div className="container">
