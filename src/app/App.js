@@ -21,10 +21,26 @@ function App() {
       });
   }, []);
 
+  const updatePetValue = async (petId, value) => {
+    try {
+      const response = await fetch(`https://petfinder-backend.stephennene.repl.co/pets/update/${petId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ value })
+      });
+      const data = await response.json();
+      console.log(data); // do something with the response data
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home logUserId={logUserId} users={users} />} />
+        <Route path="/" element={<Home updatePetValue={updatePetValue} logUserId={logUserId} users={users} />} />
         <Route
           path="/login"
           element={<Login logUserId={logUserId} setLogUserId={setLogUserId} />}

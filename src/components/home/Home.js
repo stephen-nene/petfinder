@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import NavBar from '../nav/navbar';
 import './Home.css';
 
-function Home({users , logUserId }) {
+function Home({users, logUserId, updatePetValue}) {
   const [pets, setPets] = useState([]);
   const [error, setError] = useState(null);
   const [isFetched, setIsFetched] = useState(false);
@@ -23,14 +23,14 @@ function Home({users , logUserId }) {
     }
   };
 
-  const getPet = () => {
-    console.log(users)
-
-  }
+  const getPet = (pet) => {
+    const owner = getOwner(pet);
+    console.log(owner ? owner.username : 'Unknown');
+  };
 
   const getOwner = (pet) => {
     return users.find((user) => user.id === pet.owner_id);
-  }
+  };
 
   const handleButtonClick = () => {
     setIsFetched(true);
@@ -62,13 +62,21 @@ function Home({users , logUserId }) {
                       <li>Age: {pet.age}</li>
                       <li>Gender: {pet.gender}</li>
                       <li>Breed: {pet.breed}</li>
-                      <li className={`pet-owner ${getOwner(pet) ? 'has-owner' : ''}`}>Owner: {getOwner(pet) ? getOwner(pet).username : 'Unknown'}</li>
-                      {/* <li>Size: {pet.size}</li> */}
+                      <li className={`pet-owner ${getOwner(pet) ? 'has-owner' : ''}`}>
+                        Owner: {getOwner(pet) ? getOwner(pet).username : 'Unknown'}
+                      </li>
                     </ul>
                   </div>
-                  <div className="card-footer">
-                    <button onClick={getPet} className="btn btn-primary">Add to My Pets</button>
-                  </div>
+                  {pet.owner_id === null && (
+                    <div className="card-footer">
+                      <button onClick={() => {
+                          getPet(pet);
+                          updatePetValue(pet.id, 'owner_id', logUserId);
+                      }} className="btn btn-primary">
+                        Add to My Pets
+                      </button>
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
